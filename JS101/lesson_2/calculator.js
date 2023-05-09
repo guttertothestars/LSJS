@@ -30,6 +30,8 @@ if (operation === '1') {
 
 console.log(`The result is ${output}.`);
 
+console.log("Thanks for playing with the calculator!")
+
 
 
 
