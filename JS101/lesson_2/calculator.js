@@ -6,8 +6,9 @@
 // Ask the user if they would like to perform more calculations
 // Return to beginning if answer === yes, exit program if no
 
-//Libraries
+//Libraries &c.
 const readline = require('readline-sync');
+const MESSAGES = require('./calculator_messages.json');
 
 //Functions
 function prompt(message) {
@@ -19,7 +20,7 @@ function invalidNumber(number) {
 }
 
 //Begin Program
-prompt("Welcome to the calculator!");
+prompt(MESSAGES.welcome);
 
 let keepGoing = true;
 while (keepGoing) {
@@ -29,7 +30,7 @@ while (keepGoing) {
 
   //number1 validation loop
   while (invalidNumber(number1)) {
-    prompt("Hmm... that doesn't look like a valid number.");
+    prompt(MESSAGES.invalidNum);
     number1 = readline.question();
   }
 
@@ -38,12 +39,12 @@ while (keepGoing) {
 
   //number2 validation loop
   while (invalidNumber(number2)) {
-    prompt("Hmm... that doesn't look like a valid number.");
+    prompt(MESSAGES.invalidNum);
     number2 = readline.question();
   }
 
 
-  prompt('What operation would you like to perform? \n1) Add 2) Subtract 3) Multiply 4) Divide');
+  prompt(MESSAGES.whatOperation);
   let operation = readline.question();
 
   //operation validation loop
@@ -69,7 +70,7 @@ while (keepGoing) {
   }
 
   prompt(`The result is ${output}.`);
-  prompt('Would you like to perform more calculations? Y/N');
+  prompt(MESSAGES.again);
   let answer = readline.question();
   if (answer === 'y' || answer === 'Y') {
     keepGoing = true;
@@ -78,4 +79,4 @@ while (keepGoing) {
   }
 }
 
-prompt("Thanks for playing with the calculator!");
+prompt(MESSAGES.goodbye);
