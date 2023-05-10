@@ -1,0 +1,7 @@
+{
+  "welcome" : "Welcome to the calculator!",
+  "invalidNum" : "Hmm... that doesn't look like a valid number. Try again:",
+  "whatOperation" : "What operation would you like to perform? \n1) Add 2) Subtract 3) Multiply 4) Divide",
+  "again" : "Would you like to perform more calculations? Y/N",
+  "goodbye" : "Thanks for using the calculator!"
+  }
