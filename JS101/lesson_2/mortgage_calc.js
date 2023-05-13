@@ -34,26 +34,54 @@ function prompt(message) {
   console.log(`=> ${message}`);
 }
 
+function isInvalidNum(num) {
+  return Number.isNaN(num) ||
+  num < 1;
+}
+
 // Begin program
+let runCalc = true;
 prompt("Thank you for choosing MortCalcBot 3000");
 prompt("I just need a few pieces of info from you.");
-prompt("What is the total amount of your loan?");
-let loanAmount = Number(readline.question());
-prompt("Ouch, okay. What's your APR?");
-let loanAPR = Number(readline.question());
-prompt("....");
-prompt("Well. How long do they have you on the hook for this loan?");
-prompt("Giv it to me in months, please!");
-let loanDuration = Number(readline.question());
 
-//Calc monthly interest rate from APR
-let monthlyInterestRate = (((loanAPR / 100) / 12));
+// Begin main loop
+while (runCalc === true) {
+  prompt("What is the total amount of your loan?");
+  let loanAmount = Number(readline.question());
+  while (isInvalidNum(loanAmount)) {
+    prompt("Please enter a positive number!");
+    loanAmount = readline.question();
+  }
 
-let monthlyPayment = loanAmount * (monthlyInterestRate / (1 - Math.pow((1 +
-    monthlyInterestRate), (-loanDuration))));
+  prompt("Ouch, okay. What's your APR?");
+  let loanAPR = Number(readline.question());
+  while (isInvalidNum(loanAPR)) {
+    prompt("Please enter a positive number!");
+    loanAPR = Number(readline.question());
+  }
 
-console.log(`Your monthly payment is $${monthlyPayment.toFixed(2)}`);
+  prompt("....");
+  prompt("Well. How long do they have you on the hook for this loan?");
+  prompt("Giv it to me in months, please!");
+  let loanDuration = Number(readline.question());
+  while (isInvalidNum(loanDuration)) {
+    prompt("Please enter a positive number!");
+    loanDuration = readline.question();
+  }
+
+  //Calc monthly interest rate from APR
+  let monthlyInterestRate = (((loanAPR / 100) / 12));
+
+  let monthlyPayment = loanAmount * (monthlyInterestRate / (1 - Math.pow((1 +
+      monthlyInterestRate), (-loanDuration))));
+
+  prompt(`Your monthly payment is $${monthlyPayment.toFixed(2)}`);
+  prompt("Would you like to run another calculation? (Y/N)");
+  let response = readline.question().toLowerCase()[0];
+  if (response === 'n') {
+    runCalc = false;
+  }
+} // end main loop
 
 //Things to do:
-// put calc inside loop for mulitiple calculations
 // add validation to prevent loans or interest rates below zero
