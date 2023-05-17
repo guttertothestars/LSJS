@@ -1,12 +1,8 @@
 // JS Rock Paper Scissors Lizard Spock
 
-
-// Allows for user input
 const readline = require('readline-sync');
 const MESSAGES = require('./rps_messages.json');
 
-// Global constants get defined near the top of the program file, usually just
-// after any require calls.
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'Spock'];
 
 const WINNING_COMBOS = {
@@ -17,7 +13,10 @@ const WINNING_COMBOS = {
   Spock:    ['rock',     'scissors'],
 };
 
-// Functions
+let roundCount;
+let computerScore;
+let playerScore;
+
 function prompt(message) {
   console.log(`=> ${message}`);
 }
@@ -31,9 +30,6 @@ function wait(timeLimitMilliseconds) {
   }
 }
 
-let roundCount;
-let computerScore;
-let playerScore;
 function playerWins(choice, computerChoice) {
   return WINNING_COMBOS[choice].includes(computerChoice);
 }
