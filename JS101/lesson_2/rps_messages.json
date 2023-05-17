@@ -1,0 +1,13 @@
+{
+ "welcome" : "Welcome to Rock Paper Scissors Lizard Spock",
+ "seeRules" : "Would you like to see the rules? (Y/N)",
+ "invalidChoice" : "<=====Invalid Choice=====>",
+ "win" : "You win!",
+ "lose" : "Computer wins!",
+ "draw" : "It's a tie. everyone loses.",
+ "rules" : ["=> Scissors cuts Paper covers Rock crushes Lizard poisons \n",
+ "=> Spock smashes Scissors decapitates Lizard eats Paper \n",
+ "=> disproves Spock vaporizes Rock crushes Scissors"]
+}
+
+
