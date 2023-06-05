@@ -1,16 +1,19 @@
 // JS Rock Paper Scissors Lizard Spock
 
 const readline = require('readline-sync');
-const MESSAGES = require('./rps_messages.json');
+const MESSAGES = require('./rpsls_messages.json');
 
-const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'Spock'];
+const MAX_ROUNDS = 5;
+const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+const VALID_ABBREVIATIONS = {r : 'rock', p : 'paper', s : 'scissors',
+  l : 'lizard', sp : 'spock' };
 
 const WINNING_COMBOS = {
   rock:     ['scissors', 'lizard'],
-  paper:    ['rock',     'Spock'],
+  paper:    ['rock',     'spock'],
   scissors: ['paper',    'lizard'],
-  lizard:   ['paper',    'Spock'],
-  Spock:    ['rock',     'scissors'],
+  lizard:   ['paper',    'spock'],
+  spock:    ['rock',     'scissors'],
 };
 
 let roundCount;
@@ -19,6 +22,17 @@ let playerScore;
 
 function prompt(message) {
   console.log(`=> ${message}`);
+}
+
+function handleAbbreviatedChoice(input) {
+  input = input.toLowerCase();
+  if (input.length > 2 ) {
+    return input;
+  } else if (input === 'sp' || input === 'spock') {
+    return VALID_ABBREVIATIONS['sp'];
+  } else {
+    return VALID_ABBREVIATIONS[input[0]];
+  }
 }
 
 function wait(timeLimitMilliseconds) {
@@ -72,6 +86,7 @@ function displayOverallWinner() {
 }
 
 // Begin Program
+console.clear();
 
 prompt(MESSAGES.welcome);
 prompt(MESSAGES.seeRules);
@@ -98,13 +113,17 @@ while (true) {
   }
 
 
-  while (roundCount <= 5) {
+  while (roundCount <= MAX_ROUNDS) {
     prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
     let choice = readline.question();
 
+    choice = handleAbbreviatedChoice(choice);
+
     while (!VALID_CHOICES.includes(choice)) {
       console.log(MESSAGES.invalidChoice);
+      prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
       choice = readline.question();
+      choice = handleAbbreviatedChoice(choice);
     }
 
     let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
@@ -114,7 +133,7 @@ while (true) {
 
     displayWinner(choice, computerChoice);
     scoreRound(choice, computerChoice);
-    wait(3000);
+    wait(2500);
     console.clear();
 
     if (roundCount < 6) {
