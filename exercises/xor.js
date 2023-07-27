@@ -1,0 +1,44 @@
+// Exclusive Or
+
+// The || operator returns a truthy value if either or both of its operands are
+// truthy, a falsey value if both operands are falsey. The && operator returns a
+// truthy value if both of its operands are truthy, and a falsey value if either
+// operand is falsey. This works great until you need only one, but not both,
+// of two conditions to be truthy: the so-called exclusive or.
+
+// In this exercise, you will write a function named xor that takes two
+// arguments, and returns true if exactly one of its arguments is truthy, false
+// otherwise. Note that we are looking for a boolean result instead of a
+// truthy/falsy value as returned by || and &&.
+
+// Examples:
+console.log(xor(5, 0) === true);          // true
+console.log(xor(false, true) === true);   // true
+console.log(xor(1, 1) === false);         // true
+console.log(xor(true, true) === false);   // true
+
+// Problem:
+// Take two values and determine if one is truthy and one is falsy.
+// return a boolean.
+
+// Edge Cases:
+// too many or two few arguments
+
+// Data structures:
+// Just the facts ma'am. I mean, arguments.
+
+// Algorithm:
+// using a conditional statemnt:
+// check if both arguments evaluate to false, return false if so
+// check if both arguments evaluate to true, return false if so
+// return true
+
+function xor(operand1, operand2) {
+  if ( operand1 == true && operand2 == true) {
+    return false;
+  } else if (operand1 == false && operand2 == false) {
+    return false;
+  } else {
+    return true;
+  }
+}
